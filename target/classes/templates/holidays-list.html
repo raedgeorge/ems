@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>holiday form</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0 100px;
+        font-family: sans-serif;
+
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      header {
+        padding: 20px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width:100%;
+      }
+
+      th {
+        background-color: #005c12;
+        padding: 16px;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+
+      td {
+        padding: 14px;
+        text-align: center;
+      }
+      
+	
+
+      tr:nth-child(even) {
+        background-color: lightgray;
+      }
+      
+      tr:hover{
+       background-color: #648970;
+       color:#fff;
+      }
+      
+       .add-btn {
+        padding: 16px 96px;
+        border-radius: 20px 20px;
+        letter-spacing: 1px;
+        border: none;
+        background-color: #005c12;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+      
+      }
+      .add-btn:hover {
+        padding: 16px 96px;
+        border-radius: 20px 20px;
+        letter-spacing: 1px;
+        background-color: red;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+             .cancel-btn {
+        padding: 16px 48px;
+        border-radius: 20px 20px;
+        letter-spacing: 1px;
+        border: none;
+        background-color: #005c12;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+ 
+      }
+      .cancel-btn:hover {
+        padding: 16px 48px;
+        border-radius: 20px 20px;
+        letter-spacing: 1px;
+        background-color: red;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .del-btn{
+      	color:#8a2424;
+      	font-weight:bold;
+      }
+      
+        .edit-btn {
+        font-weight: bold;
+        color: #005c12;
+      }
+      
+           a {
+        text-decoration: none;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>Holidays List</h2>
+      <label th:text="'Employee name : ' +  ${empName} "></label>
+    </header>
+    
+
+<hr>
+    <div class="table">
+      <table>
+        <thead>
+          <tr class="table-header">
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total Days</th>
+            <th>Details</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="temp : ${holidays}">
+            <td th:text="${temp.startDate}"></td>
+            <td th:text="${temp.endDate}"></td>
+            <td 
+            	th:text="${temp.endDate.getDayOfMonth()} - ${temp.startDate.getDayOfMonth()} ">
+            </td>
+            <td th:text="${temp.details}"></td>
+            <td>
+              <a class="edit-btn" href="#" th:href="@{'/employees/' + ${employeeId} + '/editHoliday'}">Edit</a> 
+              |
+              <a class="del-btn" href="#" th:href="@{'/employees/' + ${employeeId} + '/deleteHoliday'}">Delete</a>
+            </td>         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div>
+     <a class="add-btn" href="#" th:href="@{'/employees/' + ${employeeId} + '/addHoliday'}">Add Holiday</a> 
+    	<a class="cancel-btn" href="#" th:href="@{/employees}">Go Back</a>
+    </div>
+    
+  </body>
+</html>

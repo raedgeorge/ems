@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>register</title>
+
+    <link href="/css/login.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="body">
+      <h1>Registration Page</h1>
+
+      <div class="container">
+        <p class="login-label"><strong>Login</strong></p>
+
+        <form action="#" th:action="@{/register/submit}"
+        th:object="${appuser}"
+         method="post">
+        
+         <div class="username">
+            <label class="label user">User name</label>
+            <br />
+            <input class="input" type="text" id="username" th:field="*{name}" />
+          </div>
+
+          <div class="email">
+            <label class="label email">Email Address</label>
+            <br />
+            <input
+              class="input email"
+              type="email"
+              id="email"
+              th:field="*{email}"
+            />
+          </div>
+
+          <div class="password">
+            <label class="label password">Password</label>
+            <br />
+            <input
+              class="input password"
+              type="password"
+              id="password"
+              th:field="*{password}"
+            />
+          </div>
+
+          <div>
+            <label th:text=" 'Remember me' ">remember me</label>
+            <input type="checkbox" id="remember-me" name="remember-me" />
+          </div>
+
+          <button class="btn btn-login" type="submit">Register</button>
+        </form>
+        <hr />
+        <div>
+          <a class="forget-pwd" href="#">Forget Password</a>
+          <a class="sign-up" href="#">Sign Up</a>
+        </div>
+      </div>
+    </div>
+    <footer>&copy; Ra'ed Abu Sa'da 2022.</footer>
+  </body>
+</html>

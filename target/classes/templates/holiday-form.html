@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      header {
+        padding: 30px;
+        display: flex;
+
+        background-color: lightslategray;
+        border-radius: 12px 24px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+      }
+
+      body {
+        margin: 0 100px;
+      }
+
+      .form {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 80px 1fr;
+        gap: 30px;
+
+        background-color: lightslategray;
+        padding: 24px 48px;
+        border-radius: 10px;
+      }
+
+      input {
+        width: 200px;
+        height: 30px;
+
+        box-shadow: 10px 5px 1px 1px rgba(0, 0, 0, 0.2);
+      }
+
+      .input-detail {
+        width: 400px;
+        text-indent: 5px;
+      }
+
+      button {
+        background-color: green;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px 12px;
+        width: 200px;
+        font-weight: bolder;
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>Holiday Form</h2>
+    </header>
+
+    <div>
+      <form
+        class="form"
+        action="#"
+        method="post"
+        th:action="@{'/employees/' + ${employeeId} + '/saveHoliday' }"
+        th:object="${holidays}"
+      >
+        <label th:text="'Start Date'">start date</label>
+        <input type="date" th:field="*{startDate}" />
+
+        <label th:text="'End Date'">end date</label>
+        <input type="date" th:field="*{endDate}" />
+
+        <label th:text="'Details'">details</label>
+        <input class="input-detail" type="text" th:field=*{details} />
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </body>
+</html>
